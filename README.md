@@ -3,7 +3,7 @@ File Encryptor is a tool for encrypting your files.
 The app allows users to select a file and apply one of 20 different encryption algorithms.
 
 ## Encryption Algorithms
-File Encryptor supports 20 different encryption algorithms, here's a list of them:
+File Encryptor will support 20 different encryption algorithms, here's a list of them:
 1. AES (Advanced Encryption Standard) - Example code provided.
 2. DES (Data Encryption Standard)
 3. 3DES (Triple DES)
@@ -26,4 +26,4 @@ File Encryptor supports 20 different encryption algorithms, here's a list of the
 20. TEA (Tiny Encryption Algorithm)
 
 ## Coming Soon
-A possibility to decrypt encrypted files will be available soon!
+A possibility to decrypt encrypted files along with more encryption algorithms will be available soon!
