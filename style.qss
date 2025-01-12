@@ -1,0 +1,162 @@
+QWidget {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 12px;
+}
+
+QPushButton {
+    background-color: #313244;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    color: #cdd6f4;
+    min-width: 80px;
+    margin: 2px;
+}
+
+QPushButton:hover {
+    background-color: #45475a;
+}
+
+QPushButton:pressed {
+    background-color: #585b70;
+}
+
+QPushButton#optionButton {
+    background-color: #313244;
+    min-height: 40px;
+    font-weight: bold;
+}
+
+QPushButton#optionButton:hover {
+    background-color: #45475a;
+    border: 1px solid #89b4fa;
+}
+
+QPushButton#optionButton:pressed {
+    background-color: #585b70;
+}
+
+QLabel {
+    color: #cdd6f4;
+    padding: 8px;
+    font-size: 13px;
+}
+
+QPushButton#select_file_button {
+    background-color: #89b4fa;
+    color: #1e1e2e;
+    font-weight: bold;
+    padding: 12px 24px;
+    font-size: 14px;
+}
+
+QPushButton#select_file_button:hover {
+    background-color: #b4befe;
+}
+
+QPushButton#select_file_button:pressed {
+    background-color: #89b4fa;
+}
+
+QMessageBox {
+    background-color: #1e1e2e;
+}
+
+QMessageBox QLabel {
+    color: #cdd6f4;
+}
+
+QMessageBox QPushButton {
+    background-color: #89b4fa;
+    color: #1e1e2e;
+    border-radius: 6px;
+    padding: 8px 16px;
+    min-width: 80px;
+}
+
+QMessageBox QPushButton:hover {
+    background-color: #b4befe;
+}
+
+QInputDialog {
+    background-color: #1e1e2e;
+}
+
+QInputDialog QLabel {
+    color: #cdd6f4;
+}
+
+QLineEdit {
+    background-color: #313244;
+    border: 1px solid #45475a;
+    border-radius: 4px;
+    padding: 8px;
+    color: #cdd6f4;
+}
+
+QLineEdit:focus {
+    border: 1px solid #89b4fa;
+}
+
+QScrollBar:vertical {
+    border: none;
+    background-color: #313244;
+    width: 10px;
+    margin: 0;
+}
+
+QScrollBar::handle:vertical {
+    background-color: #45475a;
+    min-height: 20px;
+    border-radius: 5px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background-color: #585b70;
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+    background: none;
+}
+
+QFileDialog {
+    background-color: #1e1e2e;
+}
+
+QFileDialog QLabel {
+    color: #cdd6f4;
+}
+
+QFileDialog QPushButton {
+    background-color: #89b4fa;
+    color: #1e1e2e;
+}
+
+QFileDialog QLineEdit {
+    background-color: #313244;
+    border: 1px solid #45475a;
+    color: #cdd6f4;
+}
+
+QFileDialog QTreeView {
+    background-color: #313244;
+    border: 1px solid #45475a;
+    color: #cdd6f4;
+}
+
+QFileDialog QTreeView::item:selected {
+    background-color: #89b4fa;
+    color: #1e1e2e;
+}
+
+QGridLayout {
+    spacing: 8px;
+}

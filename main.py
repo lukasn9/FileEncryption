@@ -28,7 +28,7 @@ class FileEncryptor(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("File Encryptor")
-        self.resize(800, 600)
+        self.resize(400, 500)
         self.layout = QVBoxLayout()
         self.setLayout(self.layout)
         
@@ -74,6 +74,7 @@ class FileEncryptor(QWidget):
         self.option_buttons = []
         for i in range(len(self.encryption_methods)):
             button = QPushButton(self.encryption_methods[i])
+            button.setObjectName("optionButton")
             button.clicked.connect(lambda checked, index=i: self.encryption_alg(index))
             self.option_buttons.append(button)
             layout.addWidget(button, i // 5, i % 5)
@@ -83,7 +84,7 @@ class FileEncryptor(QWidget):
 
     def get_password(self):
         password, ok = QInputDialog.getText(
-            self, 'Password Input', 
+            self, 'Password Input',
             'Enter encryption password:', 
             QLineEdit.Password
         )
