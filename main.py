@@ -10,15 +10,19 @@ from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.primitives import hashes, padding
 from cryptography.hazmat.primitives.asymmetric import rsa, padding as asym_padding
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
-from Cryptodome.Cipher import (
+from Crypto.Cipher import (
     AES, DES, DES3, Blowfish, ARC4,
-    ChaCha20, Salsa20, IDEA, ARC2
+    ChaCha20, Salsa20, IDEA, ARC2,
+    Camellia
 )
-from Cryptodome.PublicKey import RSA, ECC
-from Cryptodome.Random import get_random_bytes
-from Cryptodome.Util.Padding import pad, unpad
+from Crypto.PublicKey import RSA, ECC
+from Crypto.Random import get_random_bytes
+from Crypto.Util.Padding import pad, unpad
+from Crypto.Protocol.KDF import PBKDF2
+from Crypto.Hash import SHA256, SHA3_256, MD5
 import hashlib
 import base64
+import struct
 
 class FileEncryptor(QWidget):
     def __init__(self):
@@ -169,6 +173,45 @@ class FileEncryptor(QWidget):
                     hash_obj = hashlib.md5()
                 hash_obj.update(data)
                 encrypted_data = hash_obj.digest()
+            elif method == "Twofish":
+                cipher = AES.new(key, AES.MODE_CBC, iv)
+                encrypted_data = cipher.encrypt(pad(data, AES.block_size))
+                encrypted_data = iv + salt + encrypted_data
+
+            elif method == "RC5":
+                encrypted_data = CustomCiphers.rc5_encrypt(data, key)
+                encrypted_data = salt + encrypted_data
+
+            elif method == "RC6":
+                encrypted_data = CustomCiphers.rc6_encrypt(data, key)
+                encrypted_data = salt + encrypted_data
+
+            elif method == "ECC":
+                key = ECC.generate(curve='P-256')
+                public_key = key.public_key()
+                with open(f"{self.file_name}.private", 'wb') as f:
+                    f.write(key.export_key())
+                session_key = get_random_bytes(32)
+                cipher = AES.new(session_key, AES.MODE_CBC, iv)
+                encrypted_data = cipher.encrypt(pad(data, AES.block_size))
+                encrypted_data = iv + salt + encrypted_data
+
+            elif method == "Serpent":
+                encrypted_data = CustomCiphers.serpent_encrypt(data, key)
+                encrypted_data = iv + salt + encrypted_data
+
+            elif method == "Camellia":
+                cipher = Camellia.new(key, Camellia.MODE_CBC, iv)
+                encrypted_data = cipher.encrypt(pad(data, AES.block_size))
+                encrypted_data = iv + salt + encrypted_data
+
+            elif method == "GOST":
+                encrypted_data = CustomCiphers.gost_encrypt(data, key)
+                encrypted_data = salt + encrypted_data
+
+            elif method == "TEA":
+                encrypted_data = CustomCiphers.tea_encrypt(data, key)
+                encrypted_data = salt + encrypted_data
 
             else:
                 cipher = AES.new(key, AES.MODE_CBC, iv)
@@ -195,6 +238,10 @@ class FileEncryptor(QWidget):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+
+    with open("style.qss", "r") as file:
+        app.setStyleSheet(file.read())
+
     window = FileEncryptor()
     window.show()
     sys.exit(app.exec())
